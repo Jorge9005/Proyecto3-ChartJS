@@ -1,6 +1,6 @@
 (()=>{
     console.log("Entró a la función anónima");
-    const BASE_URL = "https://pokeapi.co/api/v2";
+    const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
     const myChart = document.getElementById('myChart').getContext('2d');
     const tblPokemons = document.getElementById('tblPokemons');
 
@@ -16,7 +16,7 @@
         console.log(txtNombre.value);
 
         let nombre = txtNombre.value;
-        fetch(BASE_URL + "/evolution-chain/1/",
+        fetch(BASE_URL + "/pokemon",
         {
             method: "POST",
             headers: {
@@ -34,18 +34,23 @@
     });
 
     const loadData = () => {
-        fetch(BASE_URL + "/evolution-chain",
+        console.log("HOla desde la Data");
+        fetch(BASE_URL,
         {
             method: "GET"
         })
         .then(response => response.json())
         .then(response => {
-            console.log(response.count);
-            let labels_for_chart = response.count.map((item) => {
-                return item.nombre.toUpperCase();
+            console.log(response.results);
+            let labels_for_chart = response.results.map((item) => {
+                return item.name.toUpperCase();
             });
 
-            const grafica = new CharacterData(myChart, {
+            let data_for_chart = response.results.map((item) => {
+                return;
+            })
+
+            const grafica = new Chart(myChart, {
                 type: 'bar',
                 data: {
                     labels: labels_for_chart,
