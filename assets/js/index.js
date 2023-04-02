@@ -16,7 +16,7 @@
         console.log(txtNombre.value);
 
         let nombre = txtNombre.value;
-        fetch(BASE_URL + "/pokemon",
+        fetch(BASE_URL + "/pokemon/",
         {
             method: "POST",
             headers: {
@@ -34,7 +34,6 @@
     });
 
     const loadData = () => {
-        console.log("HOla desde la Data");
         fetch(BASE_URL,
         {
             method: "GET"
@@ -47,8 +46,18 @@
             });
 
             let data_for_chart = response.results.map((item) => {
-                return;
-            })
+                fetch (BASE_URL + "1"),
+                {
+                    method: "GET"
+                })
+                .then(response => response.json())
+                .then(response => {
+                    console.log(response.results);
+                    let data = response.results.map((item) => {
+                        return item.name.toUpperCase();
+                    });
+                return data;
+            });
 
             const grafica = new Chart(myChart, {
                 type: 'bar',
@@ -73,10 +82,10 @@
 
             tblPokemons.innerHTML = "";
 
-            for(const pokemon of response.const){
+            for(const pokemon of response.results){
                 let tr = `<tr>
                     <td>${pokemon.id}</td>
-                    <td>${pokemon.nombre.toUpperCase()}</td>
+                    <td>${pokemon.name.toUpperCase()}</td>
                     <td>${animal.cantidad}</td>
                     </tr>
                 `;
