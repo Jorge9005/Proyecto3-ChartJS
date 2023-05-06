@@ -1,12 +1,10 @@
 (()=>{
     console.log("Entró a la función anónima");
-    const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
+    const BASE_URL = "https://sample-api-29g5.onrender.com/";
     const myChart = document.getElementById('myChart').getContext('2d');
-    const tblPokemons = document.getElementById('tblPokemons');
+    const tablaLibros = document.getElementById('tablaLibros');
 
-    const txtId = document.getElementById('txtId');
     const txtNombre = document.getElementById('txtNombre');
-
     const btnAgregar = document.getElementById('btnAgregar');
     const btnEditar = document.getElementById('btnEditar');
     const btnEliminar = document.getElementById('btnEliminar');
@@ -16,14 +14,15 @@
         console.log(txtNombre.value);
 
         let nombre = txtNombre.value;
-        fetch(BASE_URL + "/pokemon/",
+        fetch(BASE_URL + "libros",
         {
             method: "POST",
             headers: {
                 "Content-Type": "aplication/json",
             },
             body: JSON.stringify({
-                nombre: nombre
+                nombre: nombre,
+                cantidad: cantidad
             })
         })
         .then(response => response.json())
@@ -34,29 +33,19 @@
     });
 
     const loadData = () => {
-        fetch(BASE_URL,
+        fetch(BASE_URL + "libros",
         {
             method: "GET"
         })
         .then(response => response.json())
         .then(response => {
-            console.log(response.results);
-            let labels_for_chart = response.results.map((item) => {
-                return item.name.toUpperCase();
+            console.log(response.data);
+            let labels_for_chart = response.data.map((item) => {
+                return item.title.toUpperCase();
             });
 
-            let data_for_chart = response.results.map((item) => {
-                fetch (BASE_URL + "1"),
-                {
-                    method: "GET"
-                })
-                .then(response => response.json())
-                .then(response => {
-                    console.log(response.results);
-                    let data = response.results.map((item) => {
-                        return item.name.toUpperCase();
-                    });
-                return data;
+            let data_for_chart = response.data.map((item) => {
+                return item.count;
             });
 
             const grafica = new Chart(myChart, {
@@ -64,7 +53,7 @@
                 data: {
                     labels: labels_for_chart,
                     datasets: [{
-                        label: 'Pokemons',
+                        label: 'Libros',
                         data: data_for_chart,
                         fill: true,
                         backgroundColor: '#00008B',
@@ -80,16 +69,15 @@
                 }
             });
 
-            tblPokemons.innerHTML = "";
+            tablaLibros.innerHTML = "";
 
-            for(const pokemon of response.results){
+            for(const libro of response.results){
                 let tr = `<tr>
-                    <td>${pokemon.id}</td>
-                    <td>${pokemon.name.toUpperCase()}</td>
-                    <td>${animal.cantidad}</td>
+                    <td>${lirbo.title.toUpperCase()}</td>
+                    <td>${animal.count}</td>
                     </tr>
                 `;
-                tblPokemons.innerHTML += tr;
+                tablaLibros.innerHTML += tr;
             }
         })
         .catch(error => console.log(error))
