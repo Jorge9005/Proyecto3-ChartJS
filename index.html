@@ -4,15 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon's Evolution</title>
+    <title>Biblioteca</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
+    <header class="header-wrapper">
+        <nav class="navbar-wrapper navbar justify-content-around">
+            <a href="#">Home</a>
+            <a href="#myChart">Gráfica</a>
+            <a href="#tablaLibros">Libros</a>
+            <a href="#">Contacto</a>
+        </nav>
+    </header>
     <div class="hero-wrapper">
-        <div class="hero w-100 h-25 text-center">
-            <img src="assets/img/wallpaper2.jpg" alt="wallpaper">
-        </div>
+        <h1>¡gracias por visitarnos!</h1>
+        <h3>da clic en el botón para ver los libros</h3>
+        <button class="hero-button">
+            <a class="a-hero" href="#tablaLibros">libros</a>
+        </button>
     </div>
 
     <div class="container">
@@ -26,34 +36,19 @@
                 <table class="table table-striped">
                     <thead class="table-dark">
                         <tr>
-                            <th>#</th>
-                            <th>Nombre Pokemón</th>
+                            <th>Libro</th>
+                            <th>Cantidad</th>
                         </tr>
                     </thead>
                     <tbody id="tablaLibros"></tbody>
                 </table>
-            </div>
-
-            <div class="col-md-12 mb-4">
-                <form>
-                    <div class="mb-3">
-                        <label for="txtId" class="form-label">#</label>
-                        <input type="text" class="form-control" id="txtId">
-                    </div>
-                    <div class="mb-3">
-                        <label for="txtNombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="txtNombre">
-                    </div>
-                    <button type="button" id="btnAgregar" class="btn btn-success">Agregar</button>
-                    <button type="button" id="btnEditar" class="btn btn-warning">Editar</button>
-                    <button type="button" id="btnEliminar" class="btn btn-danger">Eliminar</button>
-                </form>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="assets/js/index.js"></script>
 </body>
 </html>
