@@ -24,6 +24,9 @@ a{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-image: url(assets/img/wallpaper2.jpg);
+    width: 100%;
+    height: 800px;
 }
 
 .hero-button{
@@ -39,10 +42,4 @@ a{
 
 .a-hero{
     color: black;
-}
-
-.hero-wrapper{
-    background-image: url(assets/img/wallpaper2.jpg);
-    width: 100%;
-    height: 800px;
 }
